@@ -1,0 +1,32 @@
+body
+  div(
+    class="mdl-grid"
+  )
+    div(
+      class="mdl-cell mdl-cell--6-col"
+    )
+      h1 Blackbird
+      h4 Login
+      form
+        label(for="usernameInput") Email
+        input(
+          type="text"
+          name="email"
+          class="mdl-textfield__input"
+          id="emailInput"
+        )
+        label(for="passwordInput") Password
+        input(
+          type="password"
+          name="password"
+          class="mdl-textfield__input"
+          id="passwordInput"
+        )
+        input(
+          type="submit"
+          class="mdl-button mdl-js-button mdl-button--raised"
+          id="loginButton"
+          value="Log In"
+        )
+      p Don't have an account?
+        a(href="/signup") Sign up today.

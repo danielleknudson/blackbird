@@ -1,0 +1,15 @@
+body {
+  padding: 50px;
+}
+
+input[type="text"], input[type="password"] {
+  margin-bottom: 10px;
+}
+
+input#loginButton, input#signupButton {
+  float: right;
+}
+
+label {
+  margin-bottom: 7px;
+}

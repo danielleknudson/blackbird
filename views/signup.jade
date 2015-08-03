@@ -1,0 +1,49 @@
+body
+  div(
+    class="mdl-grid"
+  )
+    div(
+      class="mdl-cell mdl-cell--6-col"
+    )
+      h1 Blackbird
+      h4 Create your Blackbird account
+      form(
+        action="/signup"
+        method="post"
+      )
+        label(for="usernameInput") First Name
+        input(
+          type="text"
+          name="firstName"
+          class="mdl-textfield__input"
+          id="nameInput"
+        )
+        label(for="usernameInput") Last Name
+        input(
+          type="text"
+          name="lastName"
+          class="mdl-textfield__input"
+          id="nameInput"
+        )
+        label(for="usernameInput") Email Address
+        input(
+          type="text"
+          name="email"
+          class="mdl-textfield__input"
+          id="usernameInput"
+        )
+        label(for="passwordInput") Password
+        input(
+          type="password"
+          name="password"
+          class="mdl-textfield__input"
+          id="passwordInput"
+        )
+        input(
+          type="submit"
+          class="mdl-button mdl-js-button mdl-button--raised"
+          id="signupButton"
+          value="Sign Up"
+        )
+      p Already have an account?
+        a(href="/login") Log in.
