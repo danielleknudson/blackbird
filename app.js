@@ -38,19 +38,21 @@ app.post('/signup', function (req, res) {
     .fetch()
     .then(function (user) {
       if (!user) { // sign the user up
+
         var user = new User({
-          'first_name': firstName,
-          'last_name': lastName,
-          'email': email,
-          'password': req.body.password,
+          first_name: firstName,
+          last_name: lastName,
+          email: email,
+          password: req.body.password
         });
 
         user.save().then(function (user) {
+          console.log('just saved a user!', user);
           res.render('home');
         });
 
       } else { // user already exists with that email
-        res.response(409).send('That email address is already in use.');
+        res.status(409).send('That email address is already in use.');
       }
     });
 
@@ -62,9 +64,10 @@ app.get('/login', function (req, res) {
 });
 
 app.post('/login', function(req, res) {
-
+  console.log('USER TRYING TO LOG IN!!!!!!!');
   var email = req.body.email;
-
+  var password = req.body.password;
+  console.log(password);
   new User({ 'email': email })
     .fetch()
     .then(function (user) {
@@ -74,9 +77,9 @@ app.post('/login', function(req, res) {
 
       user.checkPassword(req.body.password, function (match) {
         if (!match) {
-          res.render('/login');
+          res.render('login');
         }
-        res.render('/home');
+        res.render('home');
       });
 
     });

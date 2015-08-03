@@ -6,27 +6,29 @@ var User = db.Model.extend({
   tableName: 'users',
   hasTimestamps: true,
   initialize: function () {
-    console.log('in User model');
-    this.on('creating', this.hashPassword);
+    this.on('saving', this.hashPassword, this);
   },
   hashPassword: function () {
     var context = this;
+    var password = this.get('password');
 
-    bcrypt.genSalt(10, function(err, salt) {
-      if (err) { throw new Error('Problem generating salt.'); }
-      console.log('salt: ',salt);
-      bcrypt.hash(context.get('password'), salt, null, function (err, hash) {
-        context.set('salt', salt);
-        context.set('password', hash);
+    return new Promise(function (resolve, reject) {
+      bcrypt.hash(password, 10, function(error, hash){
+        if (error){
+          return reject(error);
+        }
+
+        return resolve(context.set({'password': hash}));
       });
-
     });
+
   },
   checkPassword: function (pass, callback) {
-    var salt = this.get('salt');
+    console.log('========================================================in checkPassword');
 
-    bcrypt.compare(salt, pass, function (err, res) {
+    bcrypt.compare(pass, this.get('password'), function (err, res) {
       if (err) { throw new Error('Error comparing salt, pass. Could not verify password.'); }
+      console.log(res);
       callback(res);
     });
 

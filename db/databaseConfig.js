@@ -19,7 +19,6 @@ knex.schema.hasTable('users').then(function (exists) {
       user.string('first_name', 60);
       user.string('last_name', 60);
       user.string('email', 100);
-      user.string('salt', 200);
       user.string('password', 100);
       user.timestamps();
     }).then(function(table) {
